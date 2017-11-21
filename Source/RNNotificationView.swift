@@ -11,32 +11,32 @@ open class RNNotificationView: UIToolbar {
     
     // MARK: - Properties
     
-    public static var sharedNotification = RNNotificationView()
+    @objc public static var sharedNotification = RNNotificationView()
 
-    open var titleFont = Notification.titleFont {
+    @objc open var titleFont = Notification.titleFont {
         didSet {
             titleLabel.font = titleFont
         }
     }
-    open var titleTextColor = UIColor.white {
+    @objc open var titleTextColor = UIColor.white {
         didSet {
             titleLabel.textColor = titleTextColor
         }
     }
-    open var subtitleFont = Notification.subtitleFont {
+    @objc open var subtitleFont = Notification.subtitleFont {
         didSet {
             subtitleLabel.font = subtitleFont
         }
     }
-    open var subtitleTextColor = UIColor.white {
+    @objc open var subtitleTextColor = UIColor.white {
         didSet {
             subtitleLabel.textColor = subtitleTextColor
         }
     }
-    open var duration: TimeInterval = Notification.exhibitionDuration
+    @objc open var duration: TimeInterval = Notification.exhibitionDuration
     
-    open fileprivate(set) var isAnimating = false
-    open fileprivate(set) var isDragging = false
+    @objc open fileprivate(set) var isAnimating = false
+    @objc open fileprivate(set) var isDragging = false
     
     fileprivate var dismissTimer: Timer? {
         didSet {
@@ -87,7 +87,7 @@ open class RNNotificationView: UIToolbar {
     
     /// Frames
     
-    open var  iconSize: CGSize = NotificationLayout.iconSize {
+    @objc open var  iconSize: CGSize = NotificationLayout.iconSize {
         didSet {
             self.setNeedsLayout()
         }
@@ -138,7 +138,7 @@ open class RNNotificationView: UIToolbar {
         NotificationCenter.default.removeObserver(self)
     }
     
-    public init() {
+    @objc public init() {
         super.init(frame: CGRect(x: 0, y: 0, width: NotificationLayout.width, height: NotificationLayout.height))
         
         startNotificationObservers()
@@ -303,11 +303,11 @@ open class RNNotificationView: UIToolbar {
 
 
 
-public extension RNNotificationView {
+@objc public extension RNNotificationView {
     
     // MARK: - Public Methods
     
-    public func show(withImage image: UIImage?, title: String?, message: String?, duration: TimeInterval = Notification.exhibitionDuration, iconSize: CGSize = NotificationLayout.iconSize, onTap: (() -> ())?) {
+    @objc public func show(withImage image: UIImage?, title: String?, message: String?, duration: TimeInterval = Notification.exhibitionDuration, iconSize: CGSize = NotificationLayout.iconSize, onTap: (() -> ())?) {
         
         guard let window = UIApplication.shared.delegate?.window else {
             return
@@ -367,7 +367,7 @@ public extension RNNotificationView {
         
     }
     
-    public func hide(completion: (() -> ())?) {
+    @objc public func hide(completion: (() -> ())?) {
         
         guard !self.isDragging else {
             self.dismissTimer = nil
@@ -411,11 +411,11 @@ public extension RNNotificationView {
     
     // MARK: - Helpers
     
-    public static func show(withImage image: UIImage?, title: String?, message: String?, duration: TimeInterval = Notification.exhibitionDuration, iconSize: CGSize = NotificationLayout.iconSize, onTap: (() -> ())? = nil) {
+    @objc public static func show(withImage image: UIImage?, title: String?, message: String?, duration: TimeInterval = Notification.exhibitionDuration, iconSize: CGSize = NotificationLayout.iconSize, onTap: (() -> ())? = nil) {
         self.sharedNotification.show(withImage: image, title: title, message: message, duration: duration, iconSize: iconSize, onTap: onTap)
     }
     
-    public static func hide(completion: (() -> ())? = nil) {
+    @objc public static func hide(completion: (() -> ())? = nil) {
         self.sharedNotification.hide(completion: completion)
     }
 
