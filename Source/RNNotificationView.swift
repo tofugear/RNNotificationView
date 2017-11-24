@@ -303,7 +303,7 @@ open class RNNotificationView: UIToolbar {
 
 
 
-@objc public extension RNNotificationView {
+public extension RNNotificationView {
     
     // MARK: - Public Methods
     
