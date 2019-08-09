@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RNNotificationView: UIToolbar {
+@objc public class RNNotificationView: UIToolbar {
     
     // MARK: - Properties
     
